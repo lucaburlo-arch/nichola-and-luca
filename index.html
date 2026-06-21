@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nichola & Luca — Save the Date · 5 June 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #f5f0e6;
+    font-family: 'Montserrat', sans-serif;
+    color: #3a2e20;
+    overflow-x: hidden;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #f5f0e6;
+    position: relative;
+  }
+
+  /* ── FLORAL HEADER ── */
+  .floral-header {
+    width: 100%;
+    height: 420px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Real photo collage — multiple positioned images */
+  .floral-header img {
+    position: absolute;
+    object-fit: cover;
+  }
+
+  /* Main sprawling bouquet — full width top */
+  .img-bouquet {
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.92;
+  }
+
+  /* Lemon cluster — top right */
+  .img-lemons {
+    top: -10px; right: -20px;
+    width: 260px; height: 240px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0 0 0 120px;
+    mix-blend-mode: multiply;
+    opacity: 0.88;
+  }
+
+  /* Wisteria — top left, cascading */
+  .img-wisteria {
+    top: 20px; left: -10px;
+    width: 200px; height: 280px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 0 0 100px 0;
+    mix-blend-mode: multiply;
+    opacity: 0.82;
+  }
+
+  /* Poppies — left mid */
+  .img-poppies {
+    top: 30px; left: 140px;
+    width: 220px; height: 220px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+    mix-blend-mode: multiply;
+    opacity: 0.78;
+  }
+
+  /* Extra floral right fill */
+  .img-florals-r {
+    top: 10px; right: 140px;
+    width: 200px; height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    mix-blend-mode: multiply;
+    opacity: 0.75;
+  }
+
+  /* Gradient fade to cream at bottom of header */
+  .floral-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 180px;
+    background: linear-gradient(to bottom, transparent 0%, #f5f0e6 100%);
+    pointer-events: none;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    padding: 0 40px 60px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .save-the-date-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.3em;
+    color: #6b7c4a;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .names-script {
+    font-family: 'Great Vibes', cursive;
+    line-height: 1.05;
+    color: #8b3a2a;
+  }
+
+  .name-first { font-size: 96px; display: block; }
+  .ampersand  { font-size: 58px; display: block; margin: 4px 0; }
+  .name-last  { font-size: 96px; display: block; }
+
+  /* On smaller screens */
+  @media (max-width: 500px) {
+    .name-first, .name-last { font-size: 72px; }
+    .ampersand { font-size: 44px; }
+    .floral-header { height: 300px; }
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 30px 0 20px;
+  }
+  .ornament-line {
+    height: 1px;
+    width: 90px;
+    background: linear-gradient(to right, transparent, #b09060, transparent);
+  }
+  .ornament-diamond {
+    width: 7px; height: 7px;
+    background: #9a7a50;
+    transform: rotate(45deg);
+    opacity: 0.7;
+  }
+
+  .date-block {
+    margin: 8px 0 28px;
+  }
+  .date-main {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    color: #6b7c4a;
+    text-transform: uppercase;
+  }
+
+  /* ── COUNTDOWN ── */
+  .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+    margin: 28px auto 32px;
+    max-width: 420px;
+  }
+  .count-unit {
+    flex: 1;
+    text-align: center;
+    padding: 18px 10px;
+    border: 0.5px solid rgba(139, 90, 42, 0.2);
+    background: rgba(255,252,245,0.6);
+  }
+  .count-unit:first-child { border-radius: 4px 0 0 4px; }
+  .count-unit:last-child  { border-radius: 0 4px 4px 0; }
+  .count-unit + .count-unit { border-left: none; }
+  .count-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: #8b3a2a;
+    line-height: 1;
+    display: block;
+  }
+  .count-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: #9c8060;
+    text-transform: uppercase;
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ── LOCATION ── */
+  .location-section {
+    margin: 8px 0 36px;
+  }
+  .location-italic {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: #6a5840;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .location-caps {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    color: #6b7c4a;
+    text-transform: uppercase;
+  }
+
+  /* ── BOTTOM NOTE ── */
+  .footer-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
+    color: #a08860;
+    letter-spacing: 0.1em;
+    margin-top: 10px;
+  }
+
+  /* ── FLORAL FOOTER ── */
+  .floral-footer {
+    width: 100%;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  .floral-footer img {
+    position: absolute;
+    object-fit: cover;
+  }
+  .footer-bouquet {
+    bottom: 0; left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    width: 100%; height: 160px;
+    object-position: center bottom;
+    opacity: 0.4;
+    filter: saturate(0.8);
+  }
+  .floral-footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 70px;
+    background: linear-gradient(to bottom, #f5f0e6 0%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ── PAGE BORDER ── */
+  .page-border {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 100;
+    border: 12px solid #f5f0e6;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- FLORAL HEADER — layered real photos -->
+  <div class="floral-header">
+
+    <!-- Base: full bouquet wash -->
+    <img class="img-bouquet"
+         src="https://images.unsplash.com/photo-1490750967868-88df5691bbf9?w=1200&q=85&fit=crop&crop=top"
+         alt="Spring floral bouquet with poppies and mixed blooms">
+
+    <!-- Wisteria left cascade -->
+    <img class="img-wisteria"
+         src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80&fit=crop&crop=top"
+         alt="Purple wisteria cascade">
+
+    <!-- Poppies -->
+    <img class="img-poppies"
+         src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=600&q=80&fit=crop"
+         alt="Orange and red poppies">
+
+    <!-- Lemons right -->
+    <img class="img-lemons"
+         src="https://images.unsplash.com/photo-1590502593747-42a996133562?w=600&q=80&fit=crop"
+         alt="Fresh lemons with leaves">
+
+    <!-- Extra florals right fill -->
+    <img class="img-florals-r"
+         src="https://images.unsplash.com/photo-1444021465936-c6ca81d39b84?w=500&q=80&fit=crop&crop=top"
+         alt="Pink and magenta blooms">
+
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <p class="save-the-date-eyebrow">Save the Date</p>
+
+    <div class="names-script">
+      <span class="name-first">Nichola</span>
+      <span class="ampersand">&</span>
+      <span class="name-last">Luca</span>
+    </div>
+
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+
+    <div class="date-block">
+      <p class="date-main">5 &nbsp;·&nbsp; June &nbsp;·&nbsp; 2027</p>
+    </div>
+
+    <!-- Live Countdown -->
+    <div class="countdown">
+      <div class="count-unit">
+        <span class="count-num" id="cd-days">—</span>
+        <span class="count-label">Days</span>
+      </div>
+      <div class="count-unit">
+        <span class="count-num" id="cd-hours">—</span>
+        <span class="count-label">Hours</span>
+      </div>
+      <div class="count-unit">
+        <span class="count-num" id="cd-mins">—</span>
+        <span class="count-label">Minutes</span>
+      </div>
+      <div class="count-unit">
+        <span class="count-num" id="cd-secs">—</span>
+        <span class="count-label">Seconds</span>
+      </div>
+    </div>
+
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+
+    <div class="location-section">
+      <p class="location-italic">Malta</p>
+      <p class="location-caps">Formal invitation to follow</p>
+    </div>
+
+    <p class="footer-note">Nichola Portelli &nbsp;&amp;&nbsp; Luca Burlò</p>
+
+  </div>
+
+  <!-- FLORAL FOOTER -->
+  <div class="floral-footer">
+    <img class="footer-bouquet"
+         src="https://images.unsplash.com/photo-1490750967868-88df5691bbf9?w=1200&q=60&fit=crop&crop=top"
+         alt="">
+  </div>
+
+</div>
+
+<script>
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    var wedding = new Date('2027-06-05T11:00:00');
+    var now = new Date();
+    var diff = wedding - now;
+
+    if (diff <= 0) {
+      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(function(id) {
+        document.getElementById(id).textContent = '00';
+      });
+      return;
+    }
+
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById('cd-days').textContent  = d;
+    document.getElementById('cd-hours').textContent = pad(h);
+    document.getElementById('cd-mins').textContent  = pad(m);
+    document.getElementById('cd-secs').textContent  = pad(s);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
