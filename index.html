@@ -43,8 +43,7 @@
     justify-content: flex-start;
     text-align: center;
     overflow: hidden;
-    /* Top padding clears the central floral arch; side blooms frame the edges */
-    padding: clamp(290px, 43vw, 540px) 24px 90px;
+    padding: 0 24px 90px;
   }
 
   /* Subtle couple photo as atmospheric background outline */
@@ -92,15 +91,22 @@
     50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.05); }
   }
 
-  /* Watercolour floral garland — full width, from the original card */
+  /* Watercolour floral garland — full width, in-flow at the top so text never overlaps */
   .floral-garland {
-    position: absolute;
-    top: 0; left: 0;
+    display: block;
     width: 100%;
+    /* Pull edge-to-edge past the hero's horizontal padding */
+    margin: 0 -24px;
+    width: calc(100% + 48px);
+    max-width: none;
     height: auto;
+    position: relative;
     z-index: 1;
     pointer-events: none;
     opacity: 0.95;
+    /* Negative bottom margin lets the text tuck slightly up into the transparent
+       cream arch area, without overlapping actual flowers */
+    margin-bottom: -8vw;
   }
 
   /* Hero text */
